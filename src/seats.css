@@ -52,9 +52,8 @@ li {
 .btnmargin {
   margin-top: 15px;
 }
-.cardBtnAlign button {
-  float: left !important;
-  margin: 15px 6px;
+.cardBtnAlign {
+  margin: 25px 6px;
 }
 .borderBtn {
   border: #333 2px solid;
