@@ -44,7 +44,7 @@ const AuthForm = (props) => {
   };
 
   return (
-    <section className={classes.auth}>
+    <section className={classes.auth} style={{ marginTop: '130px' }}>
       <h1>{isLogin ? 'Sign Up' : 'Login'}</h1>
       <form onSubmit={submitHandler}>
         <div className={classes.control}>
