@@ -129,7 +129,7 @@ export const addPropertyFunc = (data) => (dispatch, getState) => {
     headers: { 'Content-Type': 'multipart/form-data' },
   })
     .then(function (response) {
-      //handle success
+      dispatch(fetchAdverts());
       console.log(response);
     })
     .catch(function (response) {

@@ -62,12 +62,31 @@
 .actions .toggle {
   margin-top: 1rem;
   background-color: transparent;
-  color: #073e33;
+  color: #fff;
   border: none;
   padding: 0.15rem 1.5rem;
 }
 
 .actions .toggle:hover {
   background-color: transparent;
-  color: #073e33;
+  color: #ff3e4e;
+}
+
+.actions button {
+  margin-top: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 11px 28px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  border: none;
+  color: #fff;
+  background: #016450;
+  transition: all 0.25s ease;
+}
+
+.actions button:hover {
+  box-shadow: 0 10px 20px -10px rgba(255, 62, 78, 0.6);
+  transform: translateY(-5px);
+  background: #ff3e4e;
 }

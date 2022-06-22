@@ -5828,3 +5828,11 @@ input:focus {
     max-width: 830px;
   }
 }
+
+.form-control {
+  padding: 6px 10px;
+  border: #016450 1px solid;
+}
+label {
+  font-size: 16px;
+}

@@ -124,27 +124,28 @@ const Modal = ({ setIsOpen, addPropertyFunc }) => {
                         <div className="row">
                           <div className=" data-column">
                             <div className=" text-center  mb-4 ">
-                              <div id="my-radio-group">Is For Sale</div>
-
                               <div
                                 role="group"
                                 aria-labelledby="my-radio-group"
                               >
+                                <label id="my-radio-group">Is For Sale</label>{' '}
+                                &nbsp;
                                 <label>
                                   <Field
                                     type="radio"
                                     name="isForSale"
                                     value="Yes"
                                   />
-                                  Yes
+                                  &nbsp; Yes
                                 </label>
+                                &nbsp;&nbsp;
                                 <label>
                                   <Field
                                     type="radio"
                                     name="isForSale"
                                     value="No"
                                   />
-                                  No
+                                  &nbsp; No
                                 </label>
                               </div>
                               {errorTxt && (
@@ -169,27 +170,28 @@ const Modal = ({ setIsOpen, addPropertyFunc }) => {
                               onBlur={handleBlur}
                             />
                             <div className="  text-center mb-4  ">
-                              <div id="my-radio-group">Featured</div>
-
                               <div
                                 role="group"
                                 aria-labelledby="my-radio-group"
                               >
+                                <label id="my-radio-group">Featured</label>
+                                &nbsp;
                                 <label>
                                   <Field
                                     type="radio"
                                     name="featured"
                                     value="Yes"
                                   />
-                                  Yes
+                                  &nbsp; Yes
                                 </label>
+                                &nbsp;&nbsp;
                                 <label>
                                   <Field
                                     type="radio"
                                     name="featured"
                                     value="No"
                                   />
-                                  No
+                                  &nbsp; No
                                 </label>
                               </div>
                               {errorTxt && (
@@ -356,7 +358,7 @@ const Modal = ({ setIsOpen, addPropertyFunc }) => {
                           <div className=" align-self-center action-column">
                             <div className="quote_btn">
                               <button
-                                className="btn"
+                                className={styles.submitBtn}
                                 type="button"
                                 onClick={(e) => handleSubmit(e)}
                                 disabled={!formik.isValid}
@@ -382,12 +384,6 @@ const Modal = ({ setIsOpen, addPropertyFunc }) => {
               style={{ position: 'relative' }}
             >
               <div className={styles.actionsContainer}>
-                <button
-                  className={styles.deleteBtn}
-                  //onClick={() => addHandler()}
-                >
-                  Add
-                </button>
                 <button
                   className={styles.cancelBtn}
                   onClick={() => setIsOpen(false)}
