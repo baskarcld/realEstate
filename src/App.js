@@ -7,7 +7,7 @@ import Layout from './Components/plugins/Layout';
 import BannerContainer from './Components/banner/BannerContainer';
 import SelectedAdvert from './Components/selectedadvert/SelectedAdvert';
 import AuthPage from './Components/Auth/AuthForm';
-import SearchedBy from './Components/Gallery/SearchedBy';
+import Properties from './Components/properties/Properties';
 import NotFound from './Components/plugins/PageNotFound';
 
 import './App.css';
@@ -23,6 +23,9 @@ function App() {
             </Route>
             <Route path="/home" exact>
               <BannerContainer />
+            </Route>
+            <Route path="/properties" exact>
+              <Properties />
             </Route>
             <Route path="/auth">
               <AuthPage />

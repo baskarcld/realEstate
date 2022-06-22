@@ -36,18 +36,6 @@ const SelectedAdvert = (props) => {
     props.fetchAdvert(id);
   }, []);
 
-  // const likeAdvert = () => {
-  //   const { id } = this.props.match.params;
-  //   this.props.likeAdvert(id);
-  // };
-
-  // const cancelAppointment = (id) => {
-  //   this.props.cancelAppointment(id);
-  // };
-
-  // const numberWithSpaces = (x) => {
-  //   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-  // };
   if (props.advert) {
     console.log(props.advert);
     return (

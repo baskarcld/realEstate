@@ -53,8 +53,8 @@ li {
   margin-top: 15px;
 }
 .cardBtnAlign button {
-  display: inline-block;
-  margin: 25px 10px;
+  float: left !important;
+  margin: 15px 6px;
 }
 .borderBtn {
   border: #333 2px solid;

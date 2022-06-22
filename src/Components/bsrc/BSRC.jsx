@@ -185,7 +185,7 @@ class BSRC extends Component {
               >
                 <form
                   className="form-inline"
-                  onSubmit={(e) => this.searchByCityname(e)}
+                  //  onSubmit={(e) => this.searchByCityname(e)}
                 >
                   <div className="advanced-searrch flex flex-wrap items-center -mb-[45px]">
                     <div className="advanced-searrch-list flex items-center lg:border-r lg:border-[#D6D4D4] lg:mr-[40px] xl:mr-[50px] last:mr-0 last:border-r-0 mb-[45px]">
@@ -306,11 +306,11 @@ class BSRC extends Component {
                             For Sale
                           </button>
 
-                          <input
+                          {/* <input
                             type="submit"
                             value="Search123"
                             className="btn btn-outline-primary ml-2"
-                          />
+                          /> */}
                         </div>
                       </div>
                     </div>

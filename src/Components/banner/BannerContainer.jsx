@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { fetchAdverts } from '../../actions/advert';
 import BSRC from '../bsrc/BSRC';
 import Banner from '../banner/Banner';
-import PopularProperties from '../popularProperties/PopularProperties';
+
 import ModernProperty from '../modernProperty/ModernProperty';
 import FeaturedProperties from '../featuredProperties/FeaturedProperties';
 import HomeVideo from '../homeVideo/HomeVideo';
@@ -23,7 +23,7 @@ const BannerContainer = (props) => {
     <>
       <Banner />
       <BSRC allAdverts={props.allAdverts} />
-      <PopularProperties allAdverts={props.allAdverts} />
+      <br />
       <ModernProperty />
       <FeaturedProperties allAdverts={props.allAdverts} />
       <HomeVideo />

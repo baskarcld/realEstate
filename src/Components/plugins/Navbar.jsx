@@ -156,7 +156,7 @@ const Navbar = (props) => {
                     <li className="mr-7 xl:mr-[40px] relative group py-[20px]">
                       <NavLink
                         activeClassName="active"
-                        to="/home"
+                        to="/properties"
                         className="transition-all hover:text-secondary"
                       >
                         Properties
