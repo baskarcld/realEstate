@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { newError } from './error';
 
-let signInUrl = 'http://rms.cloudinlabs.com/api/login';
+let signInUrl = 'https://rms.cloudinlabs.com/api/login';
 
-let signUpUrl = 'http://rms.cloudinlabs.com/api/register';
+let signUpUrl = 'https://rms.cloudinlabs.com/api/register';
 
 const AUTH_SIGNUP = 'AUTH_SIGNUP';
 const AUTH_SIGNIN = 'AUTH_SIGNIN';
@@ -16,7 +16,6 @@ const authSignUpSuccess = (auth) => ({
 });
 
 export const userSignup = (data) => (dispatch) => {
-   
   axios
     .post(`${signUpUrl}`, {
       ...data,
@@ -33,7 +32,6 @@ const authSignInSuccess = (auth) => ({
 });
 
 export const userSignin = (data) => (dispatch) => {
-   
   axios
     .post(`${signInUrl}`, {
       ...data,

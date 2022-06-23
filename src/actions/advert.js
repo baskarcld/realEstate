@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { newError } from './error';
 
-let baseUrl = 'http://rms.cloudinlabs.com/api/sites';
+let baseUrl = 'https://rms.cloudinlabs.com/api/sites';
 
 const FETCH_ALL_ADVERTS = 'FETCH_ALL_ADVERTS';
 
