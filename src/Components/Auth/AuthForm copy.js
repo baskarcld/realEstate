@@ -54,9 +54,7 @@ const AuthForm = (props) => {
           });
         }
       })
-      .then((data) => {
-        console.log(data);
-      })
+      .then((data) => {})
       .catch((error) => {
         alert(error.message);
       });
@@ -101,7 +99,7 @@ const AuthForm = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  //console.log(state.advertReducer.allAdverts);
+   
   return {
     authToken: state.authReducer.token,
     isLoggedIn: state.authReducer.isLoggedIn,

@@ -12,17 +12,12 @@ const initialState = {
   search: {},
 };
 const MainPage = (props) => {
-  //console.log(props.allAdverts);
-
   const [state, setState] = useState(initialState);
   const [seatAvailable, setSeatAvailable] = useState([]);
   const [seatReserved, setSeatReserved] = useState([]);
   const [seatSelected, setSeatSelected] = useState([]);
   const [bookState, setBookState] = useState(true);
 
-  // console.log('seatAvailable', seatAvailable);
-  // console.log('seatReserved', seatReserved);
-  //console.log('reserveSite', reserveSite);
   const onClickData = (advert) => {
     if (seatReserved.indexOf(advert) > -1) {
       setSeatAvailable([...seatAvailable, advert]);
@@ -94,8 +89,6 @@ const MainPage = (props) => {
   useEffect(() => {
     setSeatAvailable(props.allAdverts);
   }, [props.allAdverts]);
-
-  console.log(props.bookIdAdvert);
 
   const numberWithSpaces = (x) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');

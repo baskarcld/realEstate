@@ -16,7 +16,7 @@ const authSignUpSuccess = (auth) => ({
 });
 
 export const userSignup = (data) => (dispatch) => {
-  //   console.log('userSignup data 123----->', data);
+   
   axios
     .post(`${signUpUrl}`, {
       ...data,
@@ -33,7 +33,7 @@ const authSignInSuccess = (auth) => ({
 });
 
 export const userSignin = (data) => (dispatch) => {
-  //console.log('userSignin data 456----->', data);
+   
   axios
     .post(`${signInUrl}`, {
       ...data,

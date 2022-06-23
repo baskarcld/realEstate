@@ -6,7 +6,6 @@ const initialState = {
 };
 
 export default function eventReducer(state = initialState, action) {
-  // console.log(action);
   switch (action.type) {
     case 'PASS_PAGE_NUM': {
       return {
@@ -22,7 +21,6 @@ export default function eventReducer(state = initialState, action) {
       };
     }
     case 'BOOKID_ADVERT': {
-      console.log(action);
       return {
         ...state,
         bookIdAdvert: action,
@@ -65,7 +63,6 @@ export default function eventReducer(state = initialState, action) {
       };
     }
     case 'DELETE_ADVERT': {
-      console.log(action.advert.data);
       return {
         ...state,
         deletedAdvert: action.advert.data,

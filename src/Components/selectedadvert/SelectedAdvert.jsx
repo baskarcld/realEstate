@@ -37,7 +37,7 @@ const SelectedAdvert = (props) => {
   }, []);
 
   if (props.advert) {
-    console.log(props.advert);
+     
     return (
       <>
         <section

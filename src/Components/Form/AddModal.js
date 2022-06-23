@@ -400,7 +400,7 @@ const Modal = ({ setIsOpen, addPropertyFunc }) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state.advertReducer.updatedData);
+   
   return {
     updatedData: state.authReducer.updatedData,
     deleteAdvert: state.advertReducer.deletedAdvert,

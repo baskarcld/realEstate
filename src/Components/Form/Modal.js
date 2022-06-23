@@ -64,11 +64,7 @@ const Modal = ({ setIsOpen, advert, updateFunc, deleteAdvert }) => {
                 lon: advert.lon,
                 files: advert.files,
               }}
-              // onSubmit={(values, actions) => {
-              //   console.log(values);
-              //   setisValueChanged(false);
-              //   this.handleSubmit(values);
-              // }}
+               
 
               onSubmit={(values, actions) => {
                 mainSubmit(values, advert.id);
@@ -227,7 +223,7 @@ const Modal = ({ setIsOpen, advert, updateFunc, deleteAdvert }) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state.advertReducer.updatedData);
+   
   return {
     updatedData: state.authReducer.updatedData,
     deleteAdvert: state.advertReducer.deletedAdvert,

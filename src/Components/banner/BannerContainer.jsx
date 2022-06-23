@@ -11,7 +11,7 @@ import HomeVideo from '../homeVideo/HomeVideo';
 import FooterSearch from '../footerSearch/FooterSearch';
 
 const BannerContainer = (props) => {
-  console.log(props.allAdverts);
+   
 
   useEffect(() => {
     setTimeout(() => {
@@ -51,7 +51,7 @@ const BannerContainer = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  //console.log(state.advertReducer.allAdverts);
+   
   return {
     allAdverts: state.advertReducer.allAdverts,
     advertsCount: state.advertReducer.advertsCount,

@@ -4,9 +4,7 @@ import { fetchAdverts } from '../../actions/advert';
 import AdvertCard from '../advertcard/AdvertCard';
 
 const Properties = (props) => {
-  useEffect(() => {
-    console.log(props.allAdverts);
-  }, []);
+   
   useEffect(() => {
     setTimeout(() => {
       props.fetchAdverts();

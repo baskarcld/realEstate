@@ -81,7 +81,6 @@ const AuthForm = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  //console.log(state.advertReducer.allAdverts);
   return {
     authToken: state.authReducer.token,
   };

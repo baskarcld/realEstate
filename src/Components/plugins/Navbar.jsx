@@ -8,9 +8,9 @@ import logo from '../../assets/images/logo/logo.svg';
 import avatar from '../../assets/images/user/avater.png';
 
 const Navbar = (props) => {
-  console.log(props.authToken);
+   
   let isLoggedIn = props.authToken;
-  console.log(props.logout);
+   
   useEffect(() => {
     var $window = $(window),
       $body = $('body');
@@ -391,7 +391,7 @@ const Navbar = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state.authReducer.logout);
+   
   return {
     authToken: state.authReducer.token,
     isSignUp: state.authReducer.isSignUp,

@@ -28,20 +28,16 @@ export const fetchAdverts = () => (dispatch) => {
     .catch((err) => dispatch(newError(err.response)));
 };
 
-const advertFetchSuccess = (advert, id) => (
-  console.log(advert, id),
-  {
-    type: FETCH_ONE_ADVERT,
-    advert: advert,
-    id,
-  }
-);
+const advertFetchSuccess = (advert, id) => ({
+  type: FETCH_ONE_ADVERT,
+  advert: advert,
+  id,
+});
 
 export const fetchAdvert = (id) => (dispatch) => {
   axios
     .get(`${baseUrl}/${id}`)
     .then((res) => {
-      console.log(res.data.data);
       dispatch(advertFetchSuccess(res.data, id));
     })
     .catch((err) => dispatch(newError(err.response)));
@@ -71,21 +67,15 @@ export const updateFunc = (data, id) => (dispatch) => {
   })
     .then((response) => {
       dispatch(fetchAdverts());
-      console.log(response);
     })
-    .catch(function (response) {
-      console.log(response);
-    });
+    .catch(function (response) {});
 };
 
-const deleteAdvertSuccess = (advert, id) => (
-  console.log(advert, id),
-  {
-    type: DELETE_ADVERT,
-    advert: advert,
-    id,
-  }
-);
+const deleteAdvertSuccess = (advert, id) => ({
+  type: DELETE_ADVERT,
+  advert: advert,
+  id,
+});
 
 export const deleteAdvert = (id) => (dispatch) => {
   axios
@@ -130,10 +120,8 @@ export const addPropertyFunc = (data) => (dispatch, getState) => {
   })
     .then(function (response) {
       dispatch(fetchAdverts());
-      console.log(response);
     })
     .catch(function (response) {
       //handle error
-      console.log(response);
     });
 };
