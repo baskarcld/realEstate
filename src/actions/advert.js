@@ -10,6 +10,7 @@ const FETCH_ONE_ADVERT = 'FETCH_ONE_ADVERT';
 const DELETE_ADVERT = 'DELETE_ADVERT';
 const ADD_NEW_PROPERTY = 'ADD_NEW_PROPERTY';
 const UPDATE_SITE = 'UPDATE_SITE';
+const BROKER_ACTION = 'BROKER_ACTION';
 
 const advertsFetchSuccess = (adverts) => ({
   type: FETCH_ALL_ADVERTS,
@@ -124,4 +125,22 @@ export const addPropertyFunc = (data) => (dispatch, getState) => {
     .catch(function (response) {
       //handle error
     });
+};
+
+//Book
+const brokerActionSuccess = (brokerAction) => ({
+  type: BROKER_ACTION,
+  brokerActionData: brokerAction.data,
+});
+
+export const brokerAction = (id, type) => (dispatch) => {
+  axios.defaults.headers.common[
+    'Authorization'
+  ] = `Bearer ${localStorage.getItem('token')}`;
+  axios
+    .get(`${baseUrl}/${id}/${type}`)
+    .then((response) => {
+      dispatch(fetchAdverts());
+    })
+    .catch((err) => dispatch(newError(err.response)));
 };

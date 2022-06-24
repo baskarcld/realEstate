@@ -2,7 +2,8 @@ const initialState = {
   allAdverts: [],
   updatedData: [],
   advertsCount: 0,
-  pageCount: 1,
+
+  brokerEvent: {},
 };
 
 export default function eventReducer(state = initialState, action) {
@@ -66,6 +67,12 @@ export default function eventReducer(state = initialState, action) {
       return {
         ...state,
         deletedAdvert: action.advert.data,
+      };
+    }
+    case 'BROKER_ACTION': {
+      return {
+        ...state,
+        brokerEvent: action.brokerAction.data,
       };
     }
 

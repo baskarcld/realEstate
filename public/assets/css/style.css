@@ -5836,3 +5836,14 @@ input:focus {
 label {
   font-size: 16px;
 }
+
+.booked {
+  border: 3px solid red;
+  border-radius: 10px;
+  display: inline-block;
+}
+.reserved {
+  border: 3px solid green;
+  border-radius: 10px;
+  display: inline-block;
+}
