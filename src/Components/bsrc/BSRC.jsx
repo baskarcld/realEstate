@@ -36,8 +36,8 @@ const BSRC = (props) => {
   const handleChangeFunc = () => {
     setisValueChanged(true);
   };
-  const mainSubmit = (val) => {
-    props.searchProperties(val);
+  const mainSubmit = (val, label) => {
+    props.searchProperties(val, label);
   };
 
   return (
@@ -164,8 +164,8 @@ const BSRC = (props) => {
                     amount_to: 0,
                   }}
                   onSubmit={(values, actions) => {
-                    console.log(values.location.value);
-                    mainSubmit(values.location.value);
+                    console.log(values.location.label);
+                    mainSubmit(values.location.value, values.location.label);
                     actions.setSubmitting(false);
                     actions.resetForm();
                   }}

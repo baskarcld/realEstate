@@ -5,6 +5,7 @@ const initialState = {
   dropdown: [],
   searchedData: [],
   location: '',
+  label: '',
 };
 
 export default function eventReducer(state = initialState, action) {
@@ -43,7 +44,7 @@ export default function eventReducer(state = initialState, action) {
 
     case 'SEARCH_PROPERTIES': {
       let searchArry = [];
-
+      console.log(action.label);
       action.searchData.data.map((item) => {
         for (let x in item) {
           let srchtempArry = [];
@@ -59,6 +60,7 @@ export default function eventReducer(state = initialState, action) {
         ...state,
         searchedData: searchArry,
         location: action.location,
+        label: action.label,
       };
     }
     case 'UPDATE_SITE': {

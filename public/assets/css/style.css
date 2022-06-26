@@ -5895,7 +5895,7 @@ ul.legend_booking {
   list-style: none;
 }
 ul.legend_booking li {
-  margin: 0;
+  margin: 0 20px 0 0;
   padding: 0;
   list-style: none;
   display: inline-block;
@@ -5912,6 +5912,15 @@ ul.legend_booking li span.reserved {
 }
 ul.legend_booking li span.booked {
   background-color: red;
+  border: #000 1px solid;
+  width: 15px;
+  height: 15px;
+  border-radius: 0;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+ul.legend_booking li span.siteavailable {
+  background-color: white;
   border: #000 1px solid;
   width: 15px;
   height: 15px;
