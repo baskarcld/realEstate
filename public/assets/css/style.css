@@ -5851,17 +5851,20 @@ label {
 .bookedBg {
   background-color: red;
   float: left;
+  padding: 10px;
 }
 .reservedBg {
   background-color: green;
   float: left;
+  padding: 10px;
 }
 .availabledBg {
   background-color: #fff;
   float: left;
+  padding: 10px;
 }
-.bookedBg td,
-.reservedBg td {
+.bookedBg div,
+.reservedBg div {
   color: #fff;
 }
 .searchFormFieldAlign {
@@ -5885,4 +5888,34 @@ label {
   background-color: #333;
   border-color: #333;
   color: #fff;
+}
+ul.legend_booking {
+  margin: 20px 0 0 0;
+  padding: 0;
+  list-style: none;
+}
+ul.legend_booking li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: inline-block;
+  float: left;
+}
+ul.legend_booking li span.reserved {
+  background-color: green;
+  border: #000 1px solid;
+  width: 15px;
+  height: 15px;
+  border-radius: 0;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+ul.legend_booking li span.booked {
+  background-color: red;
+  border: #000 1px solid;
+  width: 15px;
+  height: 15px;
+  border-radius: 0;
+  vertical-align: middle;
+  margin-right: 10px;
 }

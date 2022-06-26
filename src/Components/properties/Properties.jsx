@@ -7,9 +7,10 @@ import BSRC from '../bsrc/BSRC';
 const Properties = (props) => {
   const [cityName, setCityName] = useState('');
   useEffect(() => {
+    console.log(props.searchedData);
     setTimeout(() => {
       props.fetchAdverts();
-      props.searchProperties(1);
+      props.searchProperties(props.location);
       setCityName(props.location);
     }, 500);
   }, []);
@@ -22,37 +23,59 @@ const Properties = (props) => {
           position: 'relative',
         }}
       >
-        <BSRC allAdverts={props.searchedData} />
-      </div>
-      <div className="container">
-        <table
-          cellSpacing="2"
-          cellPadding="20"
-          align="center"
-          style={{ border: '1px solid #333', width: '100%' }}
+        <BSRC allAdverts={props.searchedData} />{' '}
+        {props.searchedData && (
+          <div className="container">
+            <div className="row">
+              <ul className="legend_booking">
+                <li>
+                  <span className="booked">&nbsp;</span>Booked
+                </li>
+                <li>
+                  <span className="reserved">&nbsp;</span>Reserved
+                </li>{' '}
+              </ul>
+            </div>
+          </div>
+        )}
+        <div
+          className="container"
+          style={{
+            border: '1px solid #333',
+            width: '100%',
+            display: 'block',
+            minHeight: '47px',
+            marginTop: '50px',
+          }}
         >
-          <tr>
-            {props.searchedData &&
-              props.searchedData.map((advert, i) => {
-                return (
-                  <div key={i} className={advert.status == 2 ? 'bookedBg' : ''}>
+          {props.searchedData && (
+            <div className="row">
+              {props.searchedData &&
+                props.searchedData.map((advert, i) => {
+                  return (
                     <div
                       key={i}
-                      className={advert.status == 1 ? 'reservedBg' : ''}
+                      className={advert.status == 2 ? 'bookedBg' : ''}
                     >
                       <div
                         key={i}
-                        className={advert.status == 0 ? 'availabledBg' : ''}
+                        className={advert.status == 1 ? 'reservedBg' : ''}
                       >
-                        <td key={i}>{advert.siteName}</td>
+                        <div
+                          key={i}
+                          className={advert.status == 0 ? 'availabledBg' : ''}
+                        >
+                          <div key={i}>{advert.siteName}</div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
-          </tr>
-        </table>
+                  );
+                })}
+            </div>
+          )}
+        </div>
       </div>
+
       <div className="container">
         <div className="grid grid-cols-12">
           <div className="col-span-12">
@@ -93,28 +116,10 @@ const Properties = (props) => {
                   props.searchedData.map((advert, i) => {
                     return <AdvertCard advert={advert} key={i} />;
                   })}
-              </div>
-            </div>
-
-            <div id="ForBuy" className="properties-tab-content">
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-[30px]">
-                AAA
-              </div>
-            </div>
-
-            <div id="ForSale" className="properties-tab-content">
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-[30px]">
-                BBB
-              </div>
-            </div>
-            <div id="ForRent" className="properties-tab-content">
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-[30px]">
-                CCC
-              </div>
-            </div>
-            <div id="co-living2" className="properties-tab-content">
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-[30px]">
-                DDD
+                {!props.searchedData &&
+                  props.allAdverts.map((advert, i) => {
+                    return <AdvertCard advert={advert} key={i} />;
+                  })}
               </div>
             </div>
           </div>
