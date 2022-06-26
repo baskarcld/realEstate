@@ -33,10 +33,16 @@ const Properties = (props) => {
             {props.searchedData &&
               props.searchedData.map((advert, i) => {
                 return (
-                  <div className={advert.status == 2 ? 'bookedBg' : ''}>
-                    <div className={advert.status == 1 ? 'reservedBg' : ''}>
-                      <div className={advert.status == 0 ? 'availabledBg' : ''}>
-                        <td>{advert.siteName}</td>
+                  <div key={i} className={advert.status == 2 ? 'bookedBg' : ''}>
+                    <div
+                      key={i}
+                      className={advert.status == 1 ? 'reservedBg' : ''}
+                    >
+                      <div
+                        key={i}
+                        className={advert.status == 0 ? 'availabledBg' : ''}
+                      >
+                        <td key={i}>{advert.siteName}</td>
                       </div>
                     </div>
                   </div>
