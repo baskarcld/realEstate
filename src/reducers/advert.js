@@ -4,7 +4,7 @@ const initialState = {
   advertsCount: 0,
   dropdown: [],
   searchedData: [],
-  searchVal: 0,
+  location: '',
 };
 
 export default function eventReducer(state = initialState, action) {
@@ -58,7 +58,7 @@ export default function eventReducer(state = initialState, action) {
       return {
         ...state,
         searchedData: searchArry,
-        searchVal: action.searchVal,
+        location: action.location,
       };
     }
     case 'UPDATE_SITE': {

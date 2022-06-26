@@ -164,7 +164,8 @@ const BSRC = (props) => {
                     amount_to: 0,
                   }}
                   onSubmit={(values, actions) => {
-                    mainSubmit(values.location.value);
+                    console.log(values);
+                    mainSubmit(values.location);
                     actions.setSubmitting(false);
                     actions.resetForm();
                   }}

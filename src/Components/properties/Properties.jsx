@@ -5,10 +5,12 @@ import AdvertCard from '../advertcard/AdvertCard';
 import BSRC from '../bsrc/BSRC';
 
 const Properties = (props) => {
+  const [cityName, setCityName] = useState('');
   useEffect(() => {
     setTimeout(() => {
       props.fetchAdverts();
       props.searchProperties(1);
+      setCityName(props.location);
     }, 500);
   }, []);
   return (
@@ -61,7 +63,8 @@ const Properties = (props) => {
           <div className="col-span-12 flex flex-wrap flex-col md:flex-row items-start justify-between mb-[50px]">
             <div className="mb-5 lg:mb-0">
               <h2 className="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium">
-                All Properties :<span className="text-secondary">.</span>
+                All Properties : {cityName}
+                <span className="text-secondary">.</span>
               </h2>
             </div>
             <ul className="all-properties flex flex-wrap lg:pt-[10px]">
@@ -122,11 +125,12 @@ const Properties = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state.advertReducer.dropdown);
+  console.log(state.advertReducer.location);
   return {
     allAdverts: state.advertReducer.allAdverts,
     searchedData: state.advertReducer.searchedData,
     dropdown: state.advertReducer.dropdown,
+    location: state.advertReducer.location,
   };
 };
 
