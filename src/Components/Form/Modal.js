@@ -64,8 +64,6 @@ const Modal = ({ setIsOpen, advert, updateFunc, deleteAdvert }) => {
                 lon: advert.lon,
                 files: advert.files,
               }}
-               
-
               onSubmit={(values, actions) => {
                 mainSubmit(values, advert.id);
                 actions.setSubmitting(false);
@@ -223,7 +221,6 @@ const Modal = ({ setIsOpen, advert, updateFunc, deleteAdvert }) => {
 };
 
 const mapStateToProps = (state) => {
-   
   return {
     updatedData: state.authReducer.updatedData,
     deleteAdvert: state.advertReducer.deletedAdvert,

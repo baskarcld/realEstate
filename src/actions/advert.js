@@ -11,6 +11,7 @@ const DELETE_ADVERT = 'DELETE_ADVERT';
 const ADD_NEW_PROPERTY = 'ADD_NEW_PROPERTY';
 const UPDATE_SITE = 'UPDATE_SITE';
 const BROKER_ACTION = 'BROKER_ACTION';
+const SEARCH_PROPERTIES = 'SEARCH_PROPERTIES';
 
 const advertsFetchSuccess = (adverts) => ({
   type: FETCH_ALL_ADVERTS,
@@ -24,6 +25,7 @@ export const fetchAdverts = () => (dispatch) => {
   axios
     .get(`${baseUrl}`)
     .then((response) => {
+      console.log(response);
       dispatch(advertsFetchSuccess(response));
     })
     .catch((err) => dispatch(newError(err.response)));
@@ -127,7 +129,7 @@ export const addPropertyFunc = (data) => (dispatch, getState) => {
     });
 };
 
-//Book
+//Book / Reserve /Cancel
 const brokerActionSuccess = (brokerAction) => ({
   type: BROKER_ACTION,
   brokerActionData: brokerAction.data,
@@ -139,8 +141,25 @@ export const brokerAction = (id, type) => (dispatch) => {
   ] = `Bearer ${localStorage.getItem('token')}`;
   axios
     .get(`${baseUrl}/${id}/${type}`)
+    .then((response) => {})
+    .catch((err) => dispatch(newError(err.response)));
+};
+
+//Search
+const searchSuccess = (searchData, value) => ({
+  type: SEARCH_PROPERTIES,
+  searchData: searchData.data,
+});
+
+export const searchProperties = (value) => (dispatch) => {
+  axios.defaults.headers.common[
+    'Authorization'
+  ] = `Bearer ${localStorage.getItem('token')}`;
+
+  axios
+    .get(`${baseUrl}?location=${value}`)
     .then((response) => {
-      dispatch(fetchAdverts());
+      dispatch(searchSuccess(response, value));
     })
     .catch((err) => dispatch(newError(err.response)));
 };

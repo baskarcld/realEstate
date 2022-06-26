@@ -1,17 +1,50 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { fetchAdverts } from '../../actions/advert';
+import { fetchAdverts, searchProperties } from '../../actions/advert';
 import AdvertCard from '../advertcard/AdvertCard';
+import BSRC from '../bsrc/BSRC';
 
 const Properties = (props) => {
-   
   useEffect(() => {
     setTimeout(() => {
       props.fetchAdverts();
+      props.searchProperties(1);
     }, 500);
   }, []);
   return (
     <section className="featured-properties py-[80px] lg:py-[120px]">
+      <div
+        style={{
+          marginTop: '200px',
+          marginBottom: '50px',
+          position: 'relative',
+        }}
+      >
+        <BSRC allAdverts={props.searchedData} />
+      </div>
+      <div className="container">
+        <table
+          cellSpacing="2"
+          cellPadding="20"
+          align="center"
+          style={{ border: '1px solid #333', width: '100%' }}
+        >
+          <tr>
+            {props.searchedData &&
+              props.searchedData.map((advert, i) => {
+                return (
+                  <div className={advert.status == 2 ? 'bookedBg' : ''}>
+                    <div className={advert.status == 1 ? 'reservedBg' : ''}>
+                      <div className={advert.status == 0 ? 'availabledBg' : ''}>
+                        <td>{advert.siteName}</td>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+          </tr>
+        </table>
+      </div>
       <div className="container">
         <div className="grid grid-cols-12">
           <div className="col-span-12">
@@ -22,10 +55,18 @@ const Properties = (props) => {
           <div className="col-span-12 flex flex-wrap flex-col md:flex-row items-start justify-between mb-[50px]">
             <div className="mb-5 lg:mb-0">
               <h2 className="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium">
-                All Properties<span className="text-secondary">.</span>
+                All Properties :<span className="text-secondary">.</span>
               </h2>
             </div>
             <ul className="all-properties flex flex-wrap lg:pt-[10px]">
+              <li
+                data-tab="ForBuy"
+                className="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none"
+              >
+                <button className="leading-none capitalize text-primary hover:text-secondary transition-all text-[16px] ease-out">
+                  Only Featured
+                </button>
+              </li>
               <li
                 data-tab="all-properties"
                 className="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none active"
@@ -34,45 +75,13 @@ const Properties = (props) => {
                   All Properties
                 </button>
               </li>
-              <li
-                data-tab="ForBuy"
-                className="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none"
-              >
-                <button className="leading-none capitalize text-primary hover:text-secondary transition-all text-[16px] ease-out">
-                  For Buy
-                </button>
-              </li>
-              <li
-                data-tab="ForSale"
-                className="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none"
-              >
-                <button className="leading-none capitalize text-primary hover:text-secondary transition-all text-[16px] ease-out">
-                  For Sale
-                </button>
-              </li>
-              <li
-                data-tab="ForRent"
-                className="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none"
-              >
-                <button className="leading-none capitalize text-primary hover:text-secondary transition-all text-[16px] ease-out">
-                  For Rent
-                </button>
-              </li>
-              <li
-                data-tab="co-living2"
-                className="md:mr-[0px] mb-4 lg:mb-0 leading-none"
-              >
-                <button className="leading-none capitalize text-primary hover:text-secondary transition-all text-[16px] ease-out">
-                  Co-living
-                </button>
-              </li>
             </ul>
           </div>
           <div className="col-span-12">
             <div id="all-properties" className="properties-tab-content active">
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-[30px]">
-                {props.allAdverts &&
-                  props.allAdverts.map((advert, i) => {
+                {props.searchedData &&
+                  props.searchedData.map((advert, i) => {
                     return <AdvertCard advert={advert} key={i} />;
                   })}
               </div>
@@ -107,9 +116,14 @@ const Properties = (props) => {
 };
 
 const mapStateToProps = (state) => {
+  console.log(state.advertReducer.dropdown);
   return {
     allAdverts: state.advertReducer.allAdverts,
+    searchedData: state.advertReducer.searchedData,
+    dropdown: state.advertReducer.dropdown,
   };
 };
 
-export default connect(mapStateToProps, { fetchAdverts })(Properties);
+export default connect(mapStateToProps, { fetchAdverts, searchProperties })(
+  Properties
+);

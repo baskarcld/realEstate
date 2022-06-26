@@ -2,8 +2,9 @@ const initialState = {
   allAdverts: [],
   updatedData: [],
   advertsCount: 0,
-
-  brokerEvent: {},
+  dropdown: [],
+  searchedData: [],
+  searchVal: 0,
 };
 
 export default function eventReducer(state = initialState, action) {
@@ -13,14 +14,7 @@ export default function eventReducer(state = initialState, action) {
         ...state,
       };
     }
-    case 'CREATE_NEW_ADVERT': {
-      return {
-        ...state,
-        lastAddedAdvert: action.advert,
-        allAdverts: [...state.allAdverts, action.advert],
-        advertsCount: state.advertsCount + 1,
-      };
-    }
+
     case 'BOOKID_ADVERT': {
       return {
         ...state,
@@ -29,6 +23,7 @@ export default function eventReducer(state = initialState, action) {
     }
     case 'FETCH_ALL_ADVERTS': {
       let tempArryMaster = [];
+
       action.adverts.data.map((item) => {
         for (let x in item) {
           let tempArry = [];
@@ -42,6 +37,28 @@ export default function eventReducer(state = initialState, action) {
       return {
         ...state,
         allAdverts: tempArryMaster,
+        dropdown: action.adverts.dropdown,
+      };
+    }
+
+    case 'SEARCH_PROPERTIES': {
+      let searchArry = [];
+
+      action.searchData.data.map((item) => {
+        for (let x in item) {
+          let srchtempArry = [];
+          item[x].map((value) => {
+            srchtempArry.push(value);
+          });
+          searchArry.push(...srchtempArry);
+        }
+      });
+      console.log(searchArry);
+
+      return {
+        ...state,
+        searchedData: searchArry,
+        searchVal: action.searchVal,
       };
     }
     case 'UPDATE_SITE': {

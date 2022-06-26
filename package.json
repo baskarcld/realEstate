@@ -8,6 +8,7 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "@types/react-router-dom": "^5.3.3",
+    "@types/react-select": "^5.0.1",
     "autoprefixer": "^10.4.0",
     "axios": "^0.27.2",
     "baguettebox.js": "^1.11.1",

@@ -5847,3 +5847,42 @@ label {
   border-radius: 10px;
   display: inline-block;
 }
+
+.bookedBg {
+  background-color: red;
+  float: left;
+}
+.reservedBg {
+  background-color: green;
+  float: left;
+}
+.availabledBg {
+  background-color: #fff;
+  float: left;
+}
+.bookedBg td,
+.reservedBg td {
+  color: #fff;
+}
+.searchFormFieldAlign {
+  width: 22%;
+  display: inline-block;
+  margin-right: 15px;
+}
+.actions button {
+  display: inline-block;
+  cursor: pointer;
+  font: inherit;
+  color: #fff;
+  background-color: #016450;
+  border: 1px solid #016450;
+  border-radius: 4px;
+  padding: 0.5rem 2.5rem;
+}
+
+.actions button:hover {
+  display: inline-block;
+  background-color: #333;
+  border-color: #333;
+  color: #fff;
+}

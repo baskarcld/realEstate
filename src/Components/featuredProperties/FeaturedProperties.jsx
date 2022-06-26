@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 
 import AdvertCard from '../advertcard/AdvertCard';
 
 const FeaturedProperties = (props) => {
+  useEffect(() => {
+    console.log(props.allAdverts);
+  }, []);
   return (
     <section className="featured-properties py-[80px] lg:py-[120px]">
       <div className="container">
@@ -20,44 +24,24 @@ const FeaturedProperties = (props) => {
             </div>
             <ul className="all-properties flex flex-wrap lg:pt-[10px]">
               <li
-                data-tab="all-properties"
-                className="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none active"
-              >
-                <button className="leading-none capitalize text-primary hover:text-secondary transition-all text-[16px] ease-out">
-                  All Properties
-                </button>
-              </li>
-              <li
                 data-tab="ForBuy"
                 className="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none"
               >
                 <button className="leading-none capitalize text-primary hover:text-secondary transition-all text-[16px] ease-out">
-                  For Buy
+                  Only Featured
                 </button>
               </li>
               <li
-                data-tab="ForSale"
-                className="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none"
+                data-tab="all-properties"
+                className="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none active"
               >
-                <button className="leading-none capitalize text-primary hover:text-secondary transition-all text-[16px] ease-out">
-                  For Sale
-                </button>
-              </li>
-              <li
-                data-tab="ForRent"
-                className="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none"
-              >
-                <button className="leading-none capitalize text-primary hover:text-secondary transition-all text-[16px] ease-out">
-                  For Rent
-                </button>
-              </li>
-              <li
-                data-tab="co-living2"
-                className="md:mr-[0px] mb-4 lg:mb-0 leading-none"
-              >
-                <button className="leading-none capitalize text-primary hover:text-secondary transition-all text-[16px] ease-out">
-                  Co-living
-                </button>
+                <NavLink
+                  activeClassName="active"
+                  to="/properties"
+                  className="transition-all hover:text-secondary"
+                >
+                  All Properties
+                </NavLink>
               </li>
             </ul>
           </div>

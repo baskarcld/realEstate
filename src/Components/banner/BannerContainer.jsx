@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { fetchAdverts } from '../../actions/advert';
+import { fetchAdverts, searchProperties } from '../../actions/advert';
 import BSRC from '../bsrc/BSRC';
 import Banner from '../banner/Banner';
 
@@ -11,11 +11,10 @@ import HomeVideo from '../homeVideo/HomeVideo';
 import FooterSearch from '../footerSearch/FooterSearch';
 
 const BannerContainer = (props) => {
-   
-
   useEffect(() => {
     setTimeout(() => {
       props.fetchAdverts();
+      props.searchProperties(1);
     }, 500);
   }, []);
 
@@ -25,7 +24,9 @@ const BannerContainer = (props) => {
       <BSRC allAdverts={props.allAdverts} />
       <br />
       <ModernProperty />
-      <FeaturedProperties allAdverts={props.allAdverts} />
+
+      <FeaturedProperties allAdverts={props.searchedData} />
+
       <HomeVideo />
 
       <FooterSearch />
@@ -51,12 +52,14 @@ const BannerContainer = (props) => {
 };
 
 const mapStateToProps = (state) => {
-   
   return {
     allAdverts: state.advertReducer.allAdverts,
     advertsCount: state.advertReducer.advertsCount,
     pageCount: state.advertReducer.pageCount,
+    searchedData: state.advertReducer.searchedData,
   };
 };
 
-export default connect(mapStateToProps, { fetchAdverts })(BannerContainer);
+export default connect(mapStateToProps, { fetchAdverts, searchProperties })(
+  BannerContainer
+);

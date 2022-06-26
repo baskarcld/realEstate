@@ -24,9 +24,7 @@ const AdvertCard = (props) => {
   const bookHandler = (id, type) => {
     props.brokerAction(id, type);
   };
-  useEffect(() => {
-    console.log(advert);
-  }, []);
+
   return (
     <>
       {isOpen && <Modal advert={advert} setIsOpen={setIsOpen} />}

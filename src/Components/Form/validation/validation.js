@@ -12,4 +12,13 @@ const ContactValidation = () => {
   };
   return yup.object().shape(validation);
 };
-export { ContactValidation };
+
+const SearchValidation = () => {
+  let validation = {
+    location: yup.object().required(FIELD_REQUIRED),
+    // amount_from: yup.string().required(FIELD_REQUIRED),
+    // amount_to: yup.string().required(FIELD_REQUIRED),
+  };
+  return yup.object().shape(validation);
+};
+export { ContactValidation, SearchValidation };
