@@ -146,21 +146,31 @@ export const brokerAction = (id, type) => (dispatch) => {
 };
 
 //Search
-const searchSuccess = (searchData, location) => ({
+const searchSuccess = (searchData, location, label) => ({
   type: SEARCH_PROPERTIES,
   searchData: searchData.data,
   location: location,
+  label: label,
 });
 
-export const searchProperties = (location) => (dispatch) => {
+export const searchProperties = (location, label) => (dispatch) => {
   axios.defaults.headers.common[
     'Authorization'
   ] = `Bearer ${localStorage.getItem('token')}`;
-
-  axios
-    .get(`${baseUrl}?location=${location}`)
-    .then((response) => {
-      dispatch(searchSuccess(response, location));
-    })
-    .catch((err) => dispatch(newError(err.response)));
+  if (location) {
+    axios
+      .get(`${baseUrl}?location=${location}`)
+      .then((response) => {
+        console.log(response, location, label);
+        dispatch(searchSuccess(response, location, label));
+      })
+      .catch((err) => dispatch(newError(err.response)));
+  } else {
+    axios
+      .get(`${baseUrl}?location=1`)
+      .then((response) => {
+        dispatch(searchSuccess(response, location, 'Erode'));
+      })
+      .catch((err) => dispatch(newError(err.response)));
+  }
 };
