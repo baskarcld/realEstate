@@ -44,7 +44,7 @@ export default function eventReducer(state = initialState, action) {
 
     case 'SEARCH_PROPERTIES': {
       let searchArry = [];
-      console.log(action.label);
+
       action.searchData.data.map((item) => {
         for (let x in item) {
           let srchtempArry = [];
@@ -54,7 +54,6 @@ export default function eventReducer(state = initialState, action) {
           searchArry.push(...srchtempArry);
         }
       });
-      console.log(searchArry);
 
       return {
         ...state,

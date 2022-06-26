@@ -25,7 +25,6 @@ export const fetchAdverts = () => (dispatch) => {
   axios
     .get(`${baseUrl}`)
     .then((response) => {
-      console.log(response);
       dispatch(advertsFetchSuccess(response));
     })
     .catch((err) => dispatch(newError(err.response)));

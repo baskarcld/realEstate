@@ -129,7 +129,6 @@ const Properties = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state.advertReducer.label);
   return {
     allAdverts: state.advertReducer.allAdverts,
     searchedData: state.advertReducer.searchedData,

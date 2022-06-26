@@ -4,9 +4,6 @@ import { NavLink } from 'react-router-dom';
 import AdvertCard from '../advertcard/AdvertCard';
 
 const FeaturedProperties = (props) => {
-  useEffect(() => {
-    console.log(props.allAdverts);
-  }, []);
   return (
     <section className="featured-properties py-[80px] lg:py-[120px]">
       <div className="container">
