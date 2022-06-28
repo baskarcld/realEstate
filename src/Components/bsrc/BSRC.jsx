@@ -8,7 +8,7 @@ import FormikControl from '../../Components/Form/FormikControl';
 import { matchPath, Prompt } from 'react-router-dom';
 import { SearchValidation } from '../../Components/Form/validation/validation';
 
-import { fetchAdverts, searchProperties } from '../../actions/advert';
+import { searchProperties } from '../../actions/advert';
 import location from '../../assets/images/icon/location.svg';
 import property from '../../assets/images/icon/property.svg';
 import dollarCircle from '../../assets/images/icon/dollar-circle.svg';
@@ -291,6 +291,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchAdverts, searchProperties })(
-  BSRC
-);
+export default connect(mapStateToProps, { searchProperties })(BSRC);

@@ -156,11 +156,11 @@ export const searchProperties = (location, label) => (dispatch) => {
   axios.defaults.headers.common[
     'Authorization'
   ] = `Bearer ${localStorage.getItem('token')}`;
+  console.log(label);
   if (location) {
     axios
       .get(`${baseUrl}?location=${location}`)
       .then((response) => {
-        console.log(response, location, label);
         dispatch(searchSuccess(response, location, label));
       })
       .catch((err) => dispatch(newError(err.response)));

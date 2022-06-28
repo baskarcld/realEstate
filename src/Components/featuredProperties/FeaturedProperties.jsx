@@ -1,9 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { fetchAdverts, searchProperties } from '../../actions/advert';
 import { NavLink } from 'react-router-dom';
 
 import AdvertCard from '../advertcard/AdvertCard';
 
 const FeaturedProperties = (props) => {
+  const search = useLocation().search;
+  const cityName = new URLSearchParams(search).get('cityQStr');
+  const [qValue, setqValue] = useState(cityName);
+  useEffect(() => {
+    setTimeout(() => {
+      props.fetchAdverts();
+      props.searchProperties(props.location);
+      setqValue(cityName ? cityName : props.label);
+    }, 500);
+  }, []);
+  console.log(props.searchedData);
   return (
     <section className="featured-properties py-[80px] lg:py-[120px]">
       <div className="container">
@@ -16,7 +30,8 @@ const FeaturedProperties = (props) => {
           <div className="col-span-12 flex flex-wrap flex-col md:flex-row items-start justify-between mb-[50px]">
             <div className="mb-5 lg:mb-0">
               <h2 className="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium">
-                Featured Properties<span className="text-secondary">.</span>
+                All Properties : {props.label}
+                <span className="text-secondary">.</span>
               </h2>
             </div>
             <ul className="all-properties flex flex-wrap lg:pt-[10px]">
@@ -45,8 +60,8 @@ const FeaturedProperties = (props) => {
           <div className="col-span-12">
             <div id="all-properties" className="properties-tab-content active">
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-[30px]">
-                {props.allAdverts &&
-                  props.allAdverts.map((advert, i) => {
+                {props.searchedData &&
+                  props.searchedData.map((advert, i) => {
                     if (advert.featured === true) {
                       return <AdvertCard advert={advert} key={i} />;
                     }
@@ -82,4 +97,16 @@ const FeaturedProperties = (props) => {
   );
 };
 
-export default FeaturedProperties;
+const mapStateToProps = (state) => {
+  console.log(state.advertReducer.label);
+  return {
+    searchedData: state.advertReducer.searchedData,
+
+    location: state.advertReducer.location,
+    label: state.advertReducer.label,
+  };
+};
+
+export default connect(mapStateToProps, { fetchAdverts, searchProperties })(
+  FeaturedProperties
+);

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { fetchAdverts, searchProperties } from '../../actions/advert';
 import BSRC from '../bsrc/BSRC';
 import Banner from '../banner/Banner';
-
+import { useLocation } from 'react-router-dom';
 import ModernProperty from '../modernProperty/ModernProperty';
 import FeaturedProperties from '../featuredProperties/FeaturedProperties';
 import HomeVideo from '../homeVideo/HomeVideo';
@@ -11,9 +11,11 @@ import HomeVideo from '../homeVideo/HomeVideo';
 import FooterSearch from '../footerSearch/FooterSearch';
 
 const BannerContainer = (props) => {
+  const [labelState, setLableState] = useState(props.label);
   useEffect(() => {
     setTimeout(() => {
       props.fetchAdverts();
+      setLableState(props.label);
       props.searchProperties(1);
     }, 500);
   }, []);
@@ -23,9 +25,9 @@ const BannerContainer = (props) => {
       <Banner />
       <BSRC allAdverts={props.allAdverts} />
       <br />
-      <ModernProperty />
+      {/* <ModernProperty /> */}
 
-      <FeaturedProperties allAdverts={props.searchedData} />
+      <FeaturedProperties allAdverts={props.searchedData} label={props.label} />
 
       <HomeVideo />
 
@@ -57,6 +59,7 @@ const mapStateToProps = (state) => {
     advertsCount: state.advertReducer.advertsCount,
     pageCount: state.advertReducer.pageCount,
     searchedData: state.advertReducer.searchedData,
+    label: state.advertReducer.label,
   };
 };
 

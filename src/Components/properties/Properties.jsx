@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { fetchAdverts, searchProperties } from '../../actions/advert';
 import AdvertCard from '../advertcard/AdvertCard';
 import BSRC from '../bsrc/BSRC';
 
 const Properties = (props) => {
-  const [cityName, setCityName] = useState(props.label);
   useEffect(() => {
     setTimeout(() => {
       props.fetchAdverts();
       props.searchProperties(props.location);
-      setCityName(props.label);
     }, 500);
   }, []);
   return (
@@ -22,7 +21,7 @@ const Properties = (props) => {
           position: 'relative',
         }}
       >
-        <BSRC allAdverts={props.searchedData} />{' '}
+        <BSRC />{' '}
         {props.searchedData && (
           <div className="container">
             <div className="row">
@@ -86,7 +85,6 @@ const Properties = (props) => {
             <div className="mb-5 lg:mb-0">
               <h2 className="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium">
                 All Properties : {props.label}
-                <span className="text-secondary">.</span>
               </h2>
             </div>
             <ul className="all-properties flex flex-wrap lg:pt-[10px]">
@@ -129,6 +127,7 @@ const Properties = (props) => {
 };
 
 const mapStateToProps = (state) => {
+  console.log(state.advertReducer.label);
   return {
     allAdverts: state.advertReducer.allAdverts,
     searchedData: state.advertReducer.searchedData,
