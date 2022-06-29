@@ -8,7 +8,7 @@ import FormikControl from '../../Components/Form/FormikControl';
 import { matchPath, Prompt } from 'react-router-dom';
 import { SearchValidation } from '../../Components/Form/validation/validation';
 
-import { searchProperties } from '../../actions/advert';
+import { fetchAdverts, searchProperties } from '../../actions/advert';
 import location from '../../assets/images/icon/location.svg';
 import property from '../../assets/images/icon/property.svg';
 import dollarCircle from '../../assets/images/icon/dollar-circle.svg';
@@ -39,7 +39,11 @@ const BSRC = (props) => {
   const mainSubmit = (val, label) => {
     props.searchProperties(val, label);
   };
-
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     props.fetchAdverts();
+  //   }, 500);
+  // }, []);
   return (
     <div className="mt-[80px] lg:mt-[120px] xl:mt-[-160px] relative z-[2] pl-[40px] lg:pl-[50px] xl:pl-[0px]">
       <div className="container">
@@ -291,4 +295,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { searchProperties })(BSRC);
+export default connect(mapStateToProps, { fetchAdverts, searchProperties })(
+  BSRC
+);

@@ -12,8 +12,8 @@ const FeaturedProperties = (props) => {
   const [qValue, setqValue] = useState(cityName);
   useEffect(() => {
     setTimeout(() => {
-      props.fetchAdverts();
-      props.searchProperties(props.location);
+      // props.fetchAdverts();
+      // props.searchProperties(props.location);
       setqValue(cityName ? cityName : props.label);
     }, 500);
   }, []);

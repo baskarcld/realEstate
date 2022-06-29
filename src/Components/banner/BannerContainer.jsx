@@ -23,11 +23,10 @@ const BannerContainer = (props) => {
   return (
     <>
       <Banner />
-      <BSRC allAdverts={props.allAdverts} />
+      <BSRC />
       <br />
-      {/* <ModernProperty /> */}
 
-      <FeaturedProperties allAdverts={props.searchedData} label={props.label} />
+      <FeaturedProperties />
 
       <HomeVideo />
 

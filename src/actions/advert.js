@@ -140,7 +140,9 @@ export const brokerAction = (id, type) => (dispatch) => {
   ] = `Bearer ${localStorage.getItem('token')}`;
   axios
     .get(`${baseUrl}/${id}/${type}`)
-    .then((response) => {})
+    .then(function (response) {
+      dispatch(fetchAdverts());
+    })
     .catch((err) => dispatch(newError(err.response)));
 };
 
