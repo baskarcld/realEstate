@@ -93,40 +93,41 @@ const addPropertySuccess = (newdata) => ({
   newdata: newdata,
 });
 
-export const addPropertyFunc = (data) => (dispatch, getState) => {
-  var bodyFormData = new FormData();
+export const addPropertyFunc =
+  (data, location, label) => (dispatch, getState) => {
+    var bodyFormData = new FormData();
 
-  bodyFormData.append('isForSale', data.isForSale === 'Yes' ? true : false);
-  bodyFormData.append('siteName', data.siteName);
-  bodyFormData.append('featured', data.featured === 'Yes' ? true : false);
-  bodyFormData.append('siteDescription', data.siteDescription);
-  bodyFormData.append('price', data.price);
-  bodyFormData.append('address', data.address);
-  bodyFormData.append('city', data.city);
-  bodyFormData.append('sqft', data.sqft);
-  bodyFormData.append('lat', data.lat);
-  bodyFormData.append('lon', data.lon);
-  bodyFormData.append('displayNameOpenMap', data.displayNameOpenMap);
-  bodyFormData.append('agencyId', data.agencyId);
-  bodyFormData.append('siteImages', data.siteImages);
-  bodyFormData.append('files', data.files);
-  axios.defaults.headers.common[
-    'Authorization'
-  ] = `Bearer ${localStorage.getItem('token')}`;
+    bodyFormData.append('isForSale', data.isForSale === 'Yes' ? true : false);
+    bodyFormData.append('siteName', data.siteName);
+    bodyFormData.append('featured', data.featured === 'Yes' ? true : false);
+    bodyFormData.append('siteDescription', data.siteDescription);
+    bodyFormData.append('price', data.price);
+    bodyFormData.append('address', data.address);
+    bodyFormData.append('city', data.city);
+    bodyFormData.append('sqft', data.sqft);
+    bodyFormData.append('lat', data.lat);
+    bodyFormData.append('lon', data.lon);
+    bodyFormData.append('displayNameOpenMap', data.displayNameOpenMap);
+    bodyFormData.append('agencyId', data.agencyId);
+    bodyFormData.append('siteImages', data.siteImages);
+    bodyFormData.append('files', data.files);
+    axios.defaults.headers.common[
+      'Authorization'
+    ] = `Bearer ${localStorage.getItem('token')}`;
 
-  axios({
-    method: 'post',
-    url: baseUrl,
-    data: bodyFormData,
-    headers: { 'Content-Type': 'multipart/form-data' },
-  })
-    .then(function (response) {
-      dispatch(fetchAdverts());
+    axios({
+      method: 'post',
+      url: baseUrl,
+      data: bodyFormData,
+      headers: { 'Content-Type': 'multipart/form-data' },
     })
-    .catch(function (response) {
-      //handle error
-    });
-};
+      .then(function (response) {
+        dispatch(searchProperties(location, label));
+      })
+      .catch(function (response) {
+        //handle error
+      });
+  };
 
 //Book / Reserve /Cancel
 const brokerActionSuccess = (brokerAction) => ({

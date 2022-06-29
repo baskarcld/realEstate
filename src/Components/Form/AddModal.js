@@ -9,9 +9,20 @@ import { matchPath, Prompt } from 'react-router-dom';
 import FormikControl from './FormikControl';
 import { ContactValidation } from './validation/validation';
 import { connect } from 'react-redux';
-import { addPropertyFunc, searchProperties } from '../../actions/advert';
+import {
+  addPropertyFunc,
+  searchProperties,
+  fetchAdverts,
+} from '../../actions/advert';
 
-const Modal = ({ setIsOpen, addPropertyFunc, location, searchProperties }) => {
+const Modal = ({
+  setIsOpen,
+  addPropertyFunc,
+  location,
+  label,
+  searchProperties,
+  fetchAdverts,
+}) => {
   const [isValueChanged, setisValueChanged] = useState(false);
 
   const [country, setCountry] = useState(false);
@@ -28,8 +39,7 @@ const Modal = ({ setIsOpen, addPropertyFunc, location, searchProperties }) => {
   };
 
   const mainSubmit = (values) => {
-    addPropertyFunc(values);
-    searchProperties(location);
+    addPropertyFunc(values, location, label);
   };
 
   const [errorTxt, setErrorTxt] = useState(true);
@@ -361,7 +371,10 @@ const Modal = ({ setIsOpen, addPropertyFunc, location, searchProperties }) => {
                               <button
                                 className={styles.submitBtn}
                                 type="button"
-                                onClick={(e) => handleSubmit(e)}
+                                onClick={(e) => {
+                                  handleSubmit(e);
+                                  setIsOpen(false);
+                                }}
                                 disabled={!formik.isValid}
                               >
                                 Submit
@@ -409,4 +422,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { addPropertyFunc })(Modal);
+export default connect(mapStateToProps, { addPropertyFunc, fetchAdverts })(
+  Modal
+);
