@@ -11,11 +11,9 @@ import HomeVideo from '../homeVideo/HomeVideo';
 import FooterSearch from '../footerSearch/FooterSearch';
 
 const BannerContainer = (props) => {
-  const [labelState, setLableState] = useState(props.label);
   useEffect(() => {
     setTimeout(() => {
       props.fetchAdverts();
-      setLableState(props.label);
       props.searchProperties(1);
     }, 500);
   }, []);

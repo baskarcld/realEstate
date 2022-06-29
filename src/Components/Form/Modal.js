@@ -9,8 +9,19 @@ import FormikControl from './FormikControl';
 import { ContactValidation } from './validation/validation';
 import { connect } from 'react-redux';
 
-import { deleteAdvert, updateFunc } from '../../actions/advert';
-const Modal = ({ setIsOpen, advert, updateFunc, deleteAdvert }) => {
+import {
+  deleteAdvert,
+  updateFunc,
+  searchProperties,
+} from '../../actions/advert';
+const Modal = ({
+  setIsOpen,
+  advert,
+  updateFunc,
+  deleteAdvert,
+  location,
+  searchProperties,
+}) => {
   const [isValueChanged, setisValueChanged] = useState(false);
 
   const [country, setCountry] = useState(false);
@@ -28,10 +39,12 @@ const Modal = ({ setIsOpen, advert, updateFunc, deleteAdvert }) => {
 
   const mainSubmit = (values, id) => {
     updateFunc(values, id);
+    searchProperties(location);
   };
   const deleteHandler = (id) => {
     setIsOpen(false);
     deleteAdvert(id);
+    searchProperties(location);
   };
   return (
     <>
@@ -224,7 +237,13 @@ const mapStateToProps = (state) => {
   return {
     updatedData: state.authReducer.updatedData,
     deleteAdvert: state.advertReducer.deletedAdvert,
+    location: state.advertReducer.location,
+    label: state.advertReducer.label,
   };
 };
 
-export default connect(mapStateToProps, { updateFunc, deleteAdvert })(Modal);
+export default connect(mapStateToProps, {
+  updateFunc,
+  deleteAdvert,
+  searchProperties,
+})(Modal);

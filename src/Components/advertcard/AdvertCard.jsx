@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { brokerAction } from '../../actions/advert';
+import { brokerAction, searchProperties } from '../../actions/advert';
 import { NavLink } from 'react-router-dom';
 import Modal from '../../Components/Form/Modal';
 import video from '../../assets/images/icon/video.png';
@@ -22,7 +22,7 @@ const AdvertCard = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const bookHandler = (id, type) => {
-    props.brokerAction(id, type);
+    props.brokerAction(id, type, props.location, props.label);
   };
 
   return (
@@ -160,4 +160,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { brokerAction })(AdvertCard);
+export default connect(mapStateToProps, { brokerAction, searchProperties })(
+  AdvertCard
+);

@@ -12,12 +12,10 @@ const FeaturedProperties = (props) => {
   const [qValue, setqValue] = useState(cityName);
   useEffect(() => {
     setTimeout(() => {
-      // props.fetchAdverts();
-      // props.searchProperties(props.location);
       setqValue(cityName ? cityName : props.label);
     }, 500);
   }, []);
-  console.log(props.searchedData);
+
   return (
     <section className="featured-properties py-[80px] lg:py-[120px]">
       <div className="container">
@@ -63,7 +61,14 @@ const FeaturedProperties = (props) => {
                 {props.searchedData &&
                   props.searchedData.map((advert, i) => {
                     if (advert.featured === true) {
-                      return <AdvertCard advert={advert} key={i} />;
+                      return (
+                        <AdvertCard
+                          advert={advert}
+                          key={i}
+                          location={props.location}
+                          label={props.label}
+                        />
+                      );
                     }
                   })}
               </div>
@@ -98,7 +103,6 @@ const FeaturedProperties = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state.advertReducer.label);
   return {
     searchedData: state.advertReducer.searchedData,
 

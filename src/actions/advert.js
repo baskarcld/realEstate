@@ -134,14 +134,14 @@ const brokerActionSuccess = (brokerAction) => ({
   brokerActionData: brokerAction.data,
 });
 
-export const brokerAction = (id, type) => (dispatch) => {
+export const brokerAction = (id, type, location, label) => (dispatch) => {
   axios.defaults.headers.common[
     'Authorization'
   ] = `Bearer ${localStorage.getItem('token')}`;
   axios
     .get(`${baseUrl}/${id}/${type}`)
     .then(function (response) {
-      dispatch(fetchAdverts());
+      dispatch(searchProperties(location, label));
     })
     .catch((err) => dispatch(newError(err.response)));
 };
@@ -158,7 +158,7 @@ export const searchProperties = (location, label) => (dispatch) => {
   axios.defaults.headers.common[
     'Authorization'
   ] = `Bearer ${localStorage.getItem('token')}`;
-  console.log(label);
+
   if (location) {
     axios
       .get(`${baseUrl}?location=${location}`)

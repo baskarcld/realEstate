@@ -9,9 +9,9 @@ import { matchPath, Prompt } from 'react-router-dom';
 import FormikControl from './FormikControl';
 import { ContactValidation } from './validation/validation';
 import { connect } from 'react-redux';
-import { addPropertyFunc } from '../../actions/advert';
+import { addPropertyFunc, searchProperties } from '../../actions/advert';
 
-const Modal = ({ setIsOpen, addPropertyFunc }) => {
+const Modal = ({ setIsOpen, addPropertyFunc, location, searchProperties }) => {
   const [isValueChanged, setisValueChanged] = useState(false);
 
   const [country, setCountry] = useState(false);
@@ -29,6 +29,7 @@ const Modal = ({ setIsOpen, addPropertyFunc }) => {
 
   const mainSubmit = (values) => {
     addPropertyFunc(values);
+    searchProperties(location);
   };
 
   const [errorTxt, setErrorTxt] = useState(true);
@@ -400,10 +401,11 @@ const Modal = ({ setIsOpen, addPropertyFunc }) => {
 };
 
 const mapStateToProps = (state) => {
-   
   return {
     updatedData: state.authReducer.updatedData,
     deleteAdvert: state.advertReducer.deletedAdvert,
+    location: state.advertReducer.location,
+    label: state.advertReducer.label,
   };
 };
 

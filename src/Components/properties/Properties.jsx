@@ -111,11 +111,25 @@ const Properties = (props) => {
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-[30px]">
                 {props.searchedData &&
                   props.searchedData.map((advert, i) => {
-                    return <AdvertCard advert={advert} key={i} />;
+                    return (
+                      <AdvertCard
+                        advert={advert}
+                        key={i}
+                        location={props.location}
+                        label={props.label}
+                      />
+                    );
                   })}
                 {!props.searchedData &&
                   props.allAdverts.map((advert, i) => {
-                    return <AdvertCard advert={advert} key={i} />;
+                    return (
+                      <AdvertCard
+                        advert={advert}
+                        key={i}
+                        location={props.location}
+                        label={props.label}
+                      />
+                    );
                   })}
               </div>
             </div>
@@ -127,7 +141,6 @@ const Properties = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state.advertReducer.label);
   return {
     allAdverts: state.advertReducer.allAdverts,
     searchedData: state.advertReducer.searchedData,
