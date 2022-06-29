@@ -20,6 +20,7 @@ const Modal = ({
   updateFunc,
   deleteAdvert,
   location,
+  label,
   searchProperties,
 }) => {
   const [isValueChanged, setisValueChanged] = useState(false);
@@ -38,12 +39,12 @@ const Modal = ({
   };
 
   const mainSubmit = (values, id) => {
-    updateFunc(values, id);
+    updateFunc(values, id, location, label);
     searchProperties(location);
   };
   const deleteHandler = (id) => {
     setIsOpen(false);
-    deleteAdvert(id);
+    deleteAdvert(id, location, label);
     searchProperties(location);
   };
   return (

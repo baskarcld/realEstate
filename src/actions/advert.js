@@ -50,7 +50,7 @@ const updateSuccess = (updatedData) => ({
   updatedData: updatedData,
 });
 
-export const updateFunc = (data, id) => (dispatch) => {
+export const updateFunc = (data, id, location, label) => (dispatch) => {
   var bodyFormData = new FormData();
   bodyFormData.append('id', id);
   bodyFormData.append('city', data.city);
@@ -68,7 +68,7 @@ export const updateFunc = (data, id) => (dispatch) => {
     headers: { 'Content-Type': 'multipart/form-data' },
   })
     .then((response) => {
-      dispatch(fetchAdverts());
+      dispatch(searchProperties(location, label));
     })
     .catch(function (response) {});
 };
@@ -79,11 +79,12 @@ const deleteAdvertSuccess = (advert, id) => ({
   id,
 });
 
-export const deleteAdvert = (id) => (dispatch) => {
+export const deleteAdvert = (id, location, label) => (dispatch) => {
   axios
     .delete(`${baseUrl}/${id}`)
     .then((res) => {
       dispatch(deleteAdvertSuccess(res.data, id));
+      dispatch(searchProperties(location, label));
     })
     .catch((err) => dispatch(newError(err.response)));
 };
