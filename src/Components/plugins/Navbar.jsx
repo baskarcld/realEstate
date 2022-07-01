@@ -6,6 +6,7 @@ import AddModal from '../../Components/Form/AddModal';
 import { NavLink } from 'react-router-dom';
 import logo from '../../assets/images/logo/logo.svg';
 import avatar from '../../assets/images/user/avater.png';
+import ResponseModal from './ResponseModal';
 
 const Navbar = (props) => {
   let isLoggedIn = props.authToken;
@@ -111,11 +112,21 @@ const Navbar = (props) => {
     }
   }, [props.logout]);
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenApi, setIsOpenApi] = useState(false);
+
+  useEffect(() => {
+    if (props.authErr) {
+      setIsOpenApi(!isOpenApi);
+    }
+  }, [props.authErr]);
   return (
     <Fragment>
       {isOpen && <AddModal setIsOpen={setIsOpen} />}
+      {isOpenApi && (props.authErr == 400 || props.signUpstatus) && (
+        <ResponseModal setIsOpenApi={setIsOpenApi} authErr={props.authErr} />
+      )}
       <header
-        id="sticky-header"
+        id="stic ky-header"
         className="absolute left-0 top-[15px] lg:top-[30px] xl:top-[45px] w-full z-10"
       >
         <div className="container">
@@ -395,6 +406,7 @@ const mapStateToProps = (state) => {
     isSignUp: state.authReducer.isSignUp,
     isSignIn: state.authReducer.isSignIn,
     logout: state.authReducer.logout,
+    authErr: state.authReducer.authErr,
   };
 };
 

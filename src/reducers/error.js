@@ -1,18 +1,16 @@
-const initialState = null;
+const initialState = {
+  actionErr: '',
+};
 
 export default function errorReducer(state = initialState, action) {
   switch (action.type) {
-    case "USER_ACTION_ERROR": {
+    case 'ACTION_ERROR': {
+      console.log(action.error);
       return {
-        userErr: action.error
+        actionErr: action.error,
       };
     }
-    case "ACTION_ERROR": {
-      return {
-        actionErr: action.error
-      };
-    }
-    case "CLEAR_ERRORS": {
+    case 'CLEAR_ERRORS': {
       return initialState;
     }
     default: {

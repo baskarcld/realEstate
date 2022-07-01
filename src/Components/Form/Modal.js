@@ -25,18 +25,18 @@ const Modal = ({
 }) => {
   const [isValueChanged, setisValueChanged] = useState(false);
 
-  const [country, setCountry] = useState(false);
-  const [postsData, setpostsData] = useState([]);
+  //const [country, setCountry] = useState(false);
+  //const [postsData, setpostsData] = useState([]);
   const [submitConfirm, setSubmitConfirm] = useState(false);
 
   const handleChangeFunc = () => {
     setisValueChanged(true);
   };
-  const getValues = (values) => {
-    if (values) {
-      setisValueChanged(true);
-    }
-  };
+  // const getValues = (values) => {
+  //   if (values) {
+  //     setisValueChanged(true);
+  //   }
+  // };
 
   const mainSubmit = (values, id) => {
     updateFunc(values, id, location, label);

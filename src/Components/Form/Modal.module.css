@@ -16,7 +16,13 @@
   position: fixed;
   top: 10%;
   left: 40%;
-
+  z-index: 999;
+}
+.centeredAPi {
+  position: fixed;
+  top: 10%;
+  left: 45%;
+  width: 250px;
   z-index: 999;
 }
 
@@ -53,6 +59,15 @@
   color: #2c3e50;
   text-align: center;
   height: 250px;
+
+  overflow-y: auto;
+}
+.modalContentAPi {
+  padding: 10px;
+  font-size: 14px;
+  color: #2c3e50;
+  text-align: center;
+  height: 100px;
 
   overflow-y: auto;
 }

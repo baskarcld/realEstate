@@ -6,6 +6,7 @@ let signInUrl = 'https://rms.cloudinlabs.com/api/login';
 let signUpUrl = 'https://rms.cloudinlabs.com/api/register';
 
 const AUTH_SIGNUP = 'AUTH_SIGNUP';
+const AUTH_SIGNUP_ERROR = 'AUTH_SIGNUP_ERROR';
 const AUTH_SIGNIN = 'AUTH_SIGNIN';
 
 const LOGOUT = 'LOGOUT';
@@ -14,8 +15,13 @@ const authSignUpSuccess = (auth) => ({
   type: AUTH_SIGNUP,
   auth: auth,
 });
+const authSignUpError = (authErr) => ({
+  type: AUTH_SIGNUP_ERROR,
+  authErr: authErr,
+});
 
 export const userSignup = (data) => (dispatch) => {
+  console.log(data);
   axios
     .post(`${signUpUrl}`, {
       ...data,
@@ -23,7 +29,11 @@ export const userSignup = (data) => (dispatch) => {
     .then((response) => {
       dispatch(authSignUpSuccess(response.data));
     })
-    .catch((err) => dispatch(newError(err.response)));
+    .catch((err) => {
+      if (err.response) {
+        dispatch(authSignUpError(err.response.status));
+      }
+    });
 };
 
 const authSignInSuccess = (auth) => ({

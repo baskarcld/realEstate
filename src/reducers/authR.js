@@ -4,6 +4,8 @@ const initialState = {
   isSignIn: false,
   logout: false,
   updatedData: {},
+  authErr: null,
+   
 };
 
 export default function eventReducer(state = initialState, action) {
@@ -13,6 +15,12 @@ export default function eventReducer(state = initialState, action) {
         ...state,
         token: action.auth,
         isSignUp: action.auth !== null ? true : false,
+      };
+    }
+    case 'AUTH_SIGNUP_ERROR': {
+      return {
+        ...state,
+        authErr: action.authErr,
       };
     }
 

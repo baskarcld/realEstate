@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { fetchAdverts, searchProperties } from '../../actions/advert';
 import AdvertCard from '../advertcard/AdvertCard';
 import BSRC from '../bsrc/BSRC';
+import sampleSite from '../../assets/images/gallery/sampleSite.jpg';
 
 const Properties = (props) => {
   useEffect(() => {
@@ -75,6 +76,9 @@ const Properties = (props) => {
       </div>
 
       <div className="container">
+        <div>
+          <img src={sampleSite} height="350" width="350" />
+        </div>
         <div className="grid grid-cols-12">
           <div className="col-span-12">
             <span className="text-secondary text-tiny inline-block mb-2">
