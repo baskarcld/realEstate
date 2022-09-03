@@ -119,11 +119,15 @@ const Navbar = (props) => {
       setIsOpenApi(!isOpenApi);
     }
   }, [props.authErr]);
+
+  useEffect(() => {
+    alert(props.isSignIn)
+  }, [props.isSignIn])
   return (
     <Fragment>
       {isOpen && <AddModal setIsOpen={setIsOpen} />}
-      {isOpenApi && (props.authErr == 400 || props.signUpstatus) && (
-        <ResponseModal setIsOpenApi={setIsOpenApi} authErr={props.authErr} />
+      {isOpenApi && (
+        <ResponseModal setIsOpenApi={setIsOpenApi} authErr={props.authErr}  />
       )}
       <header
         id="stic ky-header"
@@ -401,6 +405,7 @@ const Navbar = (props) => {
 };
 
 const mapStateToProps = (state) => {
+  console.log('state555', state )
   return {
     authToken: state.authReducer.token,
     isSignUp: state.authReducer.isSignUp,

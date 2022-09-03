@@ -51,6 +51,7 @@ const BannerContainer = (props) => {
 };
 
 const mapStateToProps = (state) => {
+   
   return {
     allAdverts: state.advertReducer.allAdverts,
     advertsCount: state.advertReducer.advertsCount,

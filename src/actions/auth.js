@@ -1,15 +1,15 @@
-import axios from 'axios';
-import { newError } from './error';
+import axios from "axios";
+import { newError } from "./error";
 
-let signInUrl = 'https://rms.cloudinlabs.com/api/login';
+let signInUrl = "https://rms.cloudinlabs.com/api/login";
 
-let signUpUrl = 'https://rms.cloudinlabs.com/api/register';
+let signUpUrl = "https://rms.cloudinlabs.com/api/register";
 
-const AUTH_SIGNUP = 'AUTH_SIGNUP';
-const AUTH_SIGNUP_ERROR = 'AUTH_SIGNUP_ERROR';
-const AUTH_SIGNIN = 'AUTH_SIGNIN';
+const AUTH_SIGNUP = "AUTH_SIGNUP";
+const AUTH_SIGNUP_ERROR = "AUTH_SIGNUP_ERROR";
+const AUTH_SIGNIN = "AUTH_SIGNIN";
 
-const LOGOUT = 'LOGOUT';
+const LOGOUT = "LOGOUT";
 
 const authSignUpSuccess = (auth) => ({
   type: AUTH_SIGNUP,
@@ -31,7 +31,8 @@ export const userSignup = (data) => (dispatch) => {
     })
     .catch((err) => {
       if (err.response) {
-        dispatch(authSignUpError(err.response.status));
+        console.log(err.response.data);
+        dispatch(authSignUpError(err.response.data));
       }
     });
 };
@@ -47,7 +48,7 @@ export const userSignin = (data) => (dispatch) => {
       ...data,
     })
     .then((response) => {
-      localStorage.setItem('token', response.data.data.accessToken);
+      localStorage.setItem("token", response.data.data.accessToken);
       dispatch(authSignInSuccess(response.data.data.accessToken));
     })
     .catch((err) => dispatch(newError(err.response)));

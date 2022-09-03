@@ -24,8 +24,8 @@ const ResponseModal = ({ setIsOpenApi, authErr, signUpstatus }) => {
             <RiCloseLine style={{ marginBottom: '-3px' }} />
           </button>
           <div className={styles.modalContentAPi}>
-            <h4 className={styles.heading}>
-              {authErrState == 400 && <p>Invalid Request!</p>}
+            <h4 className={styles.heading}>                
+               {authErr.message}
             </h4>
           </div>
         </div>

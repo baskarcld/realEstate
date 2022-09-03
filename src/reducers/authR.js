@@ -1,30 +1,29 @@
 const initialState = {
-  token: '',
+  token: "",
   isSignUp: false,
   isSignIn: false,
   logout: false,
   updatedData: {},
-  authErr: null,
-   
+  authErr: {},
 };
 
 export default function eventReducer(state = initialState, action) {
   switch (action.type) {
-    case 'AUTH_SIGNUP': {
+    case "AUTH_SIGNUP": {
       return {
         ...state,
         token: action.auth,
         isSignUp: action.auth !== null ? true : false,
       };
     }
-    case 'AUTH_SIGNUP_ERROR': {
+    case "AUTH_SIGNUP_ERROR": {
       return {
         ...state,
         authErr: action.authErr,
       };
     }
 
-    case 'AUTH_SIGNIN': {
+    case "AUTH_SIGNIN": {
       return {
         ...state,
         token: action.auth,
@@ -33,7 +32,7 @@ export default function eventReducer(state = initialState, action) {
       };
     }
 
-    case 'LOGOUT': {
+    case "LOGOUT": {
       return {
         ...state,
         logout: action.logout,
