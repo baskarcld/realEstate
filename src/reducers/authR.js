@@ -5,6 +5,7 @@ const initialState = {
   logout: false,
   updatedData: {},
   authErr: {},
+  closeModal: true,
 };
 
 export default function eventReducer(state = initialState, action) {
@@ -20,6 +21,12 @@ export default function eventReducer(state = initialState, action) {
       return {
         ...state,
         authErr: action.authErr,
+      };
+    }
+    case "CLOSE_MODAL": {
+      return {
+        ...state,
+        closeModal: action.closeModal,
       };
     }
 

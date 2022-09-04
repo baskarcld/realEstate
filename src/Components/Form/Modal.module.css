@@ -20,10 +20,13 @@
 }
 .centeredAPi {
   position: fixed;
-  top: 10%;
-  left: 45%;
-  width: 250px;
+  top: 30%;
+  left: 0;
+  margin: 0 auto;
+  width: 35%;
   z-index: 999;
+  right: 0;
+  /* bottom: 0; */
 }
 
 .modal {
@@ -92,7 +95,7 @@
   border-radius: 8px;
   border: none;
   font-size: 18px;
-  color: #2c3e50;
+  color: #000000;
   background: white;
   transition: all 0.25s ease;
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.06);
@@ -164,4 +167,13 @@
   box-shadow: 0 10px 20px -10px rgba(255, 62, 78, 0.6);
   transform: translateY(-5px);
   background: #ff3e4e;
+}
+
+.headingError {
+  margin: 0;
+  padding: 10px;
+  color: #cf1821;
+  font-weight: 500;
+  font-size: 35px;
+  text-align: center;
 }

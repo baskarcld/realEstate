@@ -10,6 +10,7 @@ const AUTH_SIGNUP_ERROR = "AUTH_SIGNUP_ERROR";
 const AUTH_SIGNIN = "AUTH_SIGNIN";
 
 const LOGOUT = "LOGOUT";
+const CLOSE_MODAL = "CLOSE_MODAL";
 
 const authSignUpSuccess = (auth) => ({
   type: AUTH_SIGNUP,
@@ -61,4 +62,13 @@ const logoutSuccess = (logout) => ({
 
 export const logoutHandler = (data) => (dispatch) => {
   dispatch(logoutSuccess(data));
+};
+
+const closeModalSuccess = (closeModal) => {
+  console.log(closeModal);
+  return { type: CLOSE_MODAL, closeModal: closeModal };
+};
+export const closeModal = (data) => (dispatch) => {
+  console.log(data);
+  dispatch(closeModalSuccess(data));
 };

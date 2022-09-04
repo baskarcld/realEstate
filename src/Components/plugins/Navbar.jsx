@@ -1,63 +1,63 @@
-import $ from 'jquery';
-import React, { Fragment, useEffect, useState } from 'react';
-import { connect } from 'react-redux';
-import { logoutHandler } from '../../actions/auth';
-import AddModal from '../../Components/Form/AddModal';
-import { NavLink } from 'react-router-dom';
-import logo from '../../assets/images/logo/logo.svg';
-import avatar from '../../assets/images/user/avater.png';
-import ResponseModal from './ResponseModal';
+import $ from "jquery";
+import React, { Fragment, useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { logoutHandler } from "../../actions/auth";
+import AddModal from "../../Components/Form/AddModal";
+import { NavLink } from "react-router-dom";
+import logo from "../../assets/images/logo/logo.svg";
+import avatar from "../../assets/images/user/avater.png";
+import ResponseModal from "./ResponseModal";
 
 const Navbar = (props) => {
   let isLoggedIn = props.authToken;
 
   useEffect(() => {
     var $window = $(window),
-      $body = $('body');
+      $body = $("body");
 
-    var activeSticky = $('#sticky-header'),
+    var activeSticky = $("#sticky-header"),
       $winDow = $($window);
-    $winDow.on('scroll', function () {
+    $winDow.on("scroll", function () {
       var scroll = $($window).scrollTop(),
         isSticky = activeSticky;
 
       if (scroll < 1) {
-        isSticky.removeClass('is-sticky');
+        isSticky.removeClass("is-sticky");
       } else {
-        isSticky.addClass('is-sticky');
+        isSticky.addClass("is-sticky");
       }
     });
 
     //  Off Canvas toggler Function
-    var $offCanvasToggle = $('.offcanvas-toggle'),
-      $offCanvas = $('.offcanvas'),
-      $offCanvasOverlay = $('.offcanvas-overlay'),
-      $mobileMenuToggle = $('.mobile-menu-toggle');
-    $offCanvasToggle.on('click', function (e) {
+    var $offCanvasToggle = $(".offcanvas-toggle"),
+      $offCanvas = $(".offcanvas"),
+      $offCanvasOverlay = $(".offcanvas-overlay"),
+      $mobileMenuToggle = $(".mobile-menu-toggle");
+    $offCanvasToggle.on("click", function (e) {
       e.preventDefault();
       var $this = $(this),
-        $target = $this.attr('href');
-      $body.addClass('offcanvas-open');
-      $($target).addClass('offcanvas-open');
+        $target = $this.attr("href");
+      $body.addClass("offcanvas-open");
+      $($target).addClass("offcanvas-open");
       $offCanvasOverlay.fadeIn();
 
-      if ($this.parent().hasClass('mobile-menu-toggle')) {
-        $this.addClass('close');
+      if ($this.parent().hasClass("mobile-menu-toggle")) {
+        $this.addClass("close");
       }
     });
-    $('.offcanvas-close, .offcanvas-overlay').on('click', function (e) {
+    $(".offcanvas-close, .offcanvas-overlay").on("click", function (e) {
       e.preventDefault();
-      $body.removeClass('offcanvas-open');
-      $offCanvas.removeClass('offcanvas-open');
+      $body.removeClass("offcanvas-open");
+      $offCanvas.removeClass("offcanvas-open");
       $offCanvasOverlay.fadeOut();
-      $mobileMenuToggle.find('a').removeClass('close');
+      $mobileMenuToggle.find("a").removeClass("close");
     });
 
     // Off Canvas Menu
 
     function mobileOffCanvasMenu() {
-      var $offCanvasNav = $('.offcanvas-menu, .overlay-menu'),
-        $offCanvasNavSubMenu = $offCanvasNav.find('.offcanvas-submenu');
+      var $offCanvasNav = $(".offcanvas-menu, .overlay-menu"),
+        $offCanvasNavSubMenu = $offCanvasNav.find(".offcanvas-submenu");
       /*Add Toggle Button With Off Canvas Sub Menu*/
 
       $offCanvasNavSubMenu
@@ -65,27 +65,27 @@ const Navbar = (props) => {
         .prepend('<span class="menu-expand"></span>');
       /*Category Sub Menu Toggle*/
 
-      $offCanvasNav.on('click', 'li a, .menu-expand', function (e) {
+      $offCanvasNav.on("click", "li a, .menu-expand", function (e) {
         var $this = $(this);
 
-        if ($this.attr('href') === '#' || $this.hasClass('menu-expand')) {
+        if ($this.attr("href") === "#" || $this.hasClass("menu-expand")) {
           e.preventDefault();
 
-          if ($this.siblings('ul:visible').length) {
-            $this.parent('li').removeClass('active');
-            $this.siblings('ul').slideUp();
-            $this.parent('li').find('li').removeClass('active');
-            $this.parent('li').find('ul:visible').slideUp();
+          if ($this.siblings("ul:visible").length) {
+            $this.parent("li").removeClass("active");
+            $this.siblings("ul").slideUp();
+            $this.parent("li").find("li").removeClass("active");
+            $this.parent("li").find("ul:visible").slideUp();
           } else {
-            $this.parent('li').addClass('active');
+            $this.parent("li").addClass("active");
             $this
-              .closest('li')
-              .siblings('li')
-              .removeClass('active')
-              .find('li')
-              .removeClass('active');
-            $this.closest('li').siblings('li').find('ul:visible').slideUp();
-            $this.siblings('ul').slideDown();
+              .closest("li")
+              .siblings("li")
+              .removeClass("active")
+              .find("li")
+              .removeClass("active");
+            $this.closest("li").siblings("li").find("ul:visible").slideUp();
+            $this.siblings("ul").slideDown();
           }
         }
       });
@@ -97,8 +97,8 @@ const Navbar = (props) => {
       return this.length > 0;
     };
 
-    if ($('.nice-select').elExists()) {
-      $('.nice-select').selectric();
+    if ($(".nice-select").elExists()) {
+      $(".nice-select").selectric();
     }
   }, []);
 
@@ -115,19 +115,17 @@ const Navbar = (props) => {
   const [isOpenApi, setIsOpenApi] = useState(false);
 
   useEffect(() => {
-    if (props.authErr) {
+    if (!props.authErr.success) {
       setIsOpenApi(!isOpenApi);
     }
   }, [props.authErr]);
 
-  useEffect(() => {
-    alert(props.isSignIn)
-  }, [props.isSignIn])
+  useEffect(() => {}, []);
   return (
     <Fragment>
       {isOpen && <AddModal setIsOpen={setIsOpen} />}
-      {isOpenApi && (
-        <ResponseModal setIsOpenApi={setIsOpenApi} authErr={props.authErr}  />
+      {props.authErr.success === false && props.closeModal === true && (
+        <ResponseModal authErr={props.authErr} />
       )}
       <header
         id="stic ky-header"
@@ -405,13 +403,14 @@ const Navbar = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log('state555', state )
+  console.log("state555", state.authReducer.authErr);
   return {
     authToken: state.authReducer.token,
     isSignUp: state.authReducer.isSignUp,
     isSignIn: state.authReducer.isSignIn,
     logout: state.authReducer.logout,
     authErr: state.authReducer.authErr,
+    closeModal: state.authReducer.closeModal,
   };
 };
 
