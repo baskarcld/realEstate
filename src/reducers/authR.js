@@ -2,7 +2,7 @@ const initialState = {
   token: "",
   isSignUp: false,
   isSignIn: false,
-  logout: false,
+  logout: true,
   updatedData: {},
   authErr: {},
   closeModal: true,

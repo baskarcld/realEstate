@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 import logo from "../../assets/images/logo/logo.svg";
 import avatar from "../../assets/images/user/avater.png";
 import ResponseModal from "./ResponseModal";
-
+import LogoutModal from "./LogoutModal";
 const Navbar = (props) => {
   let isLoggedIn = props.authToken;
 
@@ -103,6 +103,7 @@ const Navbar = (props) => {
   }, []);
 
   const removeToken = () => {
+    localStorage.removeItem("token");
     props.logoutHandler(false);
   };
 
@@ -113,6 +114,7 @@ const Navbar = (props) => {
   }, [props.logout]);
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenApi, setIsOpenApi] = useState(false);
+  const [isOpenLogout, setIsOpenLogout] = useState(false);
 
   useEffect(() => {
     if (!props.authErr.success) {
@@ -120,13 +122,18 @@ const Navbar = (props) => {
     }
   }, [props.authErr]);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (localStorage.getItem("token") !== null) {
+      setIsOpenLogout(true);
+    }
+  }, []);
   return (
     <Fragment>
       {isOpen && <AddModal setIsOpen={setIsOpen} />}
       {props.authErr.success === false && props.closeModal === true && (
         <ResponseModal authErr={props.authErr} />
       )}
+      {!props.logout && props.closeModal === true && <LogoutModal />}
       <header
         id="stic ky-header"
         className="absolute left-0 top-[15px] lg:top-[30px] xl:top-[45px] w-full z-10"
@@ -209,7 +216,6 @@ const Navbar = (props) => {
                         </li>
                       </ul>
                     </li>
-
                     <li className="mr-7 xl:mr-[40px] relative group py-[20px]">
                       <NavLink
                         activeClassName="active"
@@ -220,29 +226,26 @@ const Navbar = (props) => {
                       </NavLink>
                     </li>
 
-                    {!props.logout && (
+                    <li className="mr-7 xl:mr-[40px] relative group py-[20px]">
+                      <NavLink
+                        activeClassName="active"
+                        to="/auth"
+                        className="transition-all hover:text-secondary"
+                      >
+                        Login
+                      </NavLink>
+                    </li>
+
+                    <>
                       <li className="mr-7 xl:mr-[40px] relative group py-[20px]">
-                        <NavLink
-                          activeClassName="active"
-                          to="/auth"
-                          className="transition-all hover:text-secondary"
-                        >
-                          Login
-                        </NavLink>
+                        <button onClick={removeToken}>Logout</button>
                       </li>
-                    )}
-                    {props.logout && (
-                      <>
-                        <li className="mr-7 xl:mr-[40px] relative group py-[20px]">
-                          <button onClick={removeToken}>Logout</button>
-                        </li>
-                        <li className="mr-7 xl:mr-[40px] relative group py-[20px]">
-                          <button onClick={() => setIsOpen(true)}>
-                            Add New Property
-                          </button>
-                        </li>
-                      </>
-                    )}
+                      <li className="mr-7 xl:mr-[40px] relative group py-[20px]">
+                        <button onClick={() => setIsOpen(true)}>
+                          Add New Property
+                        </button>
+                      </li>
+                    </>
                   </ul>
 
                   <ul className="flex flex-wrap items-center">
