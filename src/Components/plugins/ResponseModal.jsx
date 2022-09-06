@@ -9,8 +9,15 @@ const ResponseModal = (props) => {
   useEffect(() => {
     setTimeout(() => {
       setAuthErrState(props.authErr);
-    }, 700);
+    }, 500);
   }, [props.authErr]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      window.location.reload(true);
+    }, 2000);
+  }, [props.authErr]);
+
   const closeModalHandler = () => {
     props.closeModal(false);
   };

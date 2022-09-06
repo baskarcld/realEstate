@@ -105,6 +105,9 @@ const Navbar = (props) => {
   const removeToken = () => {
     localStorage.removeItem("token");
     props.logoutHandler(false);
+    setTimeout(() => {
+      window.location.reload(true);
+    }, 2000);
   };
 
   useEffect(() => {
