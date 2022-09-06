@@ -226,26 +226,30 @@ const Navbar = (props) => {
                       </NavLink>
                     </li>
 
-                    <li className="mr-7 xl:mr-[40px] relative group py-[20px]">
-                      <NavLink
-                        activeClassName="active"
-                        to="/auth"
-                        className="transition-all hover:text-secondary"
-                      >
-                        Login
-                      </NavLink>
-                    </li>
+                    {localStorage.getItem("token") === null && (
+                      <li className="mr-7 xl:mr-[40px] relative group py-[20px]">
+                        <NavLink
+                          activeClassName="active"
+                          to="/auth"
+                          className="transition-all hover:text-secondary"
+                        >
+                          Login
+                        </NavLink>
+                      </li>
+                    )}
 
-                    <>
-                      <li className="mr-7 xl:mr-[40px] relative group py-[20px]">
-                        <button onClick={removeToken}>Logout</button>
-                      </li>
-                      <li className="mr-7 xl:mr-[40px] relative group py-[20px]">
-                        <button onClick={() => setIsOpen(true)}>
-                          Add New Property
-                        </button>
-                      </li>
-                    </>
+                    {localStorage.getItem("token") !== null && (
+                      <>
+                        <li className="mr-7 xl:mr-[40px] relative group py-[20px]">
+                          <button onClick={removeToken}>Logout</button>
+                        </li>
+                        <li className="mr-7 xl:mr-[40px] relative group py-[20px]">
+                          <button onClick={() => setIsOpen(true)}>
+                            Add New Property
+                          </button>
+                        </li>
+                      </>
+                    )}
                   </ul>
 
                   <ul className="flex flex-wrap items-center">
